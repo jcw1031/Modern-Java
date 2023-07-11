@@ -2,6 +2,7 @@ package woopaca.chapter01;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class Section03 {
 
@@ -84,9 +85,4 @@ class Apple {
 enum Color {
 
     RED, GREEN
-}
-
-interface Predicate<T> {
-
-    boolean test(T t);
 }
