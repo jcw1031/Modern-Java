@@ -1,10 +1,13 @@
 package woopaca.chapter03;
 
 import woopaca.Apple;
+import woopaca.Color;
 
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
 import static java.util.Comparator.comparing;
 
@@ -34,6 +37,38 @@ public class PracticalUse {
 
     public void useMethodReference() {
         inventory.sort(comparing(Apple::getWeight));
+    }
+
+    public void reverse() {
+        inventory.sort(comparing(Apple::getWeight).reversed());
+    }
+
+    public void dualComparator() {
+        inventory.sort(comparing(Apple::getWeight)
+                .reversed()
+                .thenComparing(Apple::getColor));
+    }
+
+    public void compoundPredicate() {
+        Predicate<Apple> notRedApple =
+                ((Predicate<Apple>) apple -> apple.getColor().equals(Color.RED))
+                        .negate();
+
+        Predicate<Apple> redAndHeavyApple =
+                ((Predicate<Apple>) apple -> apple.getColor().equals(Color.RED))
+                        .and(apple -> apple.getWeight() > 150);
+
+        Predicate<Apple> redAndHeavyAppleOrGreenApple =
+                ((Predicate<Apple>) apple -> apple.getColor().equals(Color.RED))
+                        .or(apple -> apple.getColor().equals(Color.GREEN));
+    }
+
+    public void compoundFunction() {
+        Function<Integer, Integer> andThen = ((Function<Integer, Integer>) x -> x + 1)
+                .andThen(x1 -> x1 * 2);
+
+        Function<Integer, Integer> compose = ((Function<Integer, Integer>) x -> x + 1)
+                .compose(x -> x * 2);
     }
 }
 
