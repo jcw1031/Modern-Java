@@ -1,5 +1,8 @@
 package woopaca.chapter01;
 
+import woopaca.Apple;
+import woopaca.Color;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
@@ -8,9 +11,9 @@ public class Section03 {
 
     public static void main(String[] args) {
         List<Apple> apples = new ArrayList<>();
-        apples.add(new Apple(Color.RED, 100));
-        apples.add(new Apple(Color.RED, 200));
-        apples.add(new Apple(Color.GREEN, 170));
+        apples.add(new Apple(100, Color.RED));
+        apples.add(new Apple(200, Color.RED));
+        apples.add(new Apple(170, Color.GREEN));
         FilterTest.filterApples(apples, apple -> apple.getColor().equals(Color.GREEN));
     }
 }
@@ -52,37 +55,3 @@ class FilterTest {
     }
 }
 
-class Apple {
-
-    private Color color;
-    private int weight;
-
-    public Apple() {
-    }
-
-    public Apple(Color color, int weight) {
-        this.color = color;
-        this.weight = weight;
-    }
-
-    public Color getColor() {
-        return color;
-    }
-
-    public int getWeight() {
-        return weight;
-    }
-
-    public static boolean isGreenApple(Apple apple) {
-        return apple.getColor().equals(Color.GREEN);
-    }
-
-    public static boolean isHeavyApple(Apple apple) {
-        return apple.getWeight() > 150;
-    }
-}
-
-enum Color {
-
-    RED, GREEN
-}

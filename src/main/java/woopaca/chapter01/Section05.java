@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 public class Section05 {
 
     public static void main(String[] args) {
-        Collection<Integer> collection = List.of(1, 2, 3);
+        Collection<Integer> collection = Arrays.asList(1, 2, 3);
         Stream<Integer> collectionStream = collection.stream();
 
         Stream<Integer> arrayStream = Stream.of(1, 2, 3);

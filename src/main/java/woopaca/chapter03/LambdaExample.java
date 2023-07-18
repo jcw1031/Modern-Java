@@ -1,5 +1,7 @@
 package woopaca.chapter03;
 
+import woopaca.Apple;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -34,47 +36,4 @@ public class LambdaExample {
 interface BufferedReaderProcessor {
 
     String process(BufferedReader br) throws IOException;
-}
-
-class Apple {
-
-    private Integer weight;
-    private Color color;
-
-    public Apple() {
-    }
-
-    public Apple(Integer weight, Color color) {
-        this.weight = weight;
-        this.color = color;
-    }
-
-    public Integer getWeight() {
-        return weight;
-    }
-
-    public void setWeight(Integer weight) {
-        this.weight = weight;
-    }
-
-    public Color getColor() {
-        return color;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
-    }
-
-    @Override
-    public String toString() {
-        return "Apple{" +
-                "weight=" + weight +
-                ", color=" + color +
-                '}';
-    }
-}
-
-enum Color {
-
-    RED, GREEN
 }

@@ -1,6 +1,7 @@
 package woopaca.chapter03;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -10,7 +11,7 @@ public class FunctionalInterfaceExample {
 
     public void predicateExample() {
         Predicate<String> nonEmptyStringPredicate = (String input) -> !input.isEmpty();
-        List<String> nonEmptyString = filter(List.of("a", "b", ""), nonEmptyStringPredicate);
+        List<String> nonEmptyString = filter(Arrays.asList("a", "b", ""), nonEmptyStringPredicate);
     }
 
     public <T> List<T> filter(List<T> list, Predicate<T> predicate) {
@@ -24,7 +25,7 @@ public class FunctionalInterfaceExample {
     }
 
     public void consumerExample() {
-        forEach(List.of(1, 2, 3, 4, 5), (Integer i) -> System.out.println(i));
+        forEach(Arrays.asList(1, 2, 3, 4, 5), (Integer i) -> System.out.println(i));
     }
 
     public <T> void forEach(List<T> list, Consumer<T> consumer) {
@@ -34,7 +35,7 @@ public class FunctionalInterfaceExample {
     }
 
     public void functionExample() {
-        List<Integer> list = map(List.of("java", "in", "action"), (String s) -> s.length());
+        List<Integer> list = map(Arrays.asList("java", "in", "action"), (String s) -> s.length());
     }
 
     public <T, R> List<R> map(List<T> list, Function<T, R> function) {

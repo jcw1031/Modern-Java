@@ -1,6 +1,10 @@
 package woopaca.chapter02;
 
+import woopaca.Apple;
+import woopaca.Color;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -10,8 +14,8 @@ import java.util.function.Predicate;
 public class BehaviorParameterization {
 
     public static void main(String[] args) {
-        List<Apple> inventory =
-                List.of(new Apple(100, Color.GREEN), new Apple(200, Color.RED), new Apple(230, Color.GREEN));
+        var inventory =
+                Arrays.asList(new Apple(100, Color.GREEN), new Apple(200, Color.RED), new Apple(230, Color.GREEN));
         List<Apple> greenApples = AppleFilter.filterApples(inventory, new AppleGreenColorPredicate());
         List<Apple> redApplesAnonymousClass =
                 AppleFilter.filterApples(inventory, new Predicate<Apple>() {
@@ -31,49 +35,6 @@ public class BehaviorParameterization {
             return weight + " " + color + " apple";
         });
     }
-}
-
-class Apple {
-
-    private int weight;
-    private Color color;
-
-    public Apple() {
-    }
-
-    public Apple(int weight, Color color) {
-        this.weight = weight;
-        this.color = color;
-    }
-
-    public int getWeight() {
-        return weight;
-    }
-
-    public void setWeight(int weight) {
-        this.weight = weight;
-    }
-
-    public Color getColor() {
-        return color;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
-    }
-
-    @Override
-    public String toString() {
-        return "Apple{" +
-                "weight=" + weight +
-                ", color=" + color +
-                '}';
-    }
-}
-
-enum Color {
-
-    RED, GREEN
 }
 
 class AppleFilter {
