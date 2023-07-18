@@ -18,10 +18,12 @@ public class LambdaExample {
         Comparator<Apple> byWeightLambda =
                 (apple1, apple2) -> apple1.getWeight().compareTo(apple2.getWeight());
 
-        String result = processFile((BufferedReader br) -> br.readLine() + br.readLine());
+        String oneLines = processFile((BufferedReader br) -> br.readLine());
+        String twoLines = processFile((BufferedReader br) -> br.readLine() + br.readLine());
     }
 
-    public static String processFile(BufferedReaderProcessor bufferedReaderProcessor) throws IOException {
+    public static String processFile(BufferedReaderProcessor bufferedReaderProcessor)
+            throws IOException {
         try (BufferedReader br = new BufferedReader(new FileReader("data.txt"))) {
             return bufferedReaderProcessor.process(br);
         }
