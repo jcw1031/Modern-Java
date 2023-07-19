@@ -41,6 +41,7 @@ public class PracticalUse {
 
     public void reverse() {
         inventory.sort(comparing(Apple::getWeight).reversed());
+        inventory.sort(comparing((Apple apple) -> apple.getWeight()).reversed());
     }
 
     public void dualComparator() {
