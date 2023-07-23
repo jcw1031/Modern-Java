@@ -1,5 +1,7 @@
 package woopaca.chapter04;
 
+import woopaca.Dish;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
