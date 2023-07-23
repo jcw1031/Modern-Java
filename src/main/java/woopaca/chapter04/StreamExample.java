@@ -2,6 +2,7 @@ package woopaca.chapter04;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 import static java.util.Comparator.comparing;
@@ -60,6 +61,22 @@ public class StreamExample {
                 .limit(3) // 선착순 세 개만 선택
                 .collect(toList()); // 결과를 다른 리스트로 저장
         System.out.println("threeHighCaloricDishesName = " + threeHighCaloricDishesName);
+    }
+
+    public void externalIterationAndInternalIteration() {
+        List<String> highCaloricDishes = new ArrayList<>();
+        Iterator<Dish> iterator = menu.iterator();
+        while (iterator.hasNext()) {
+            Dish dish = iterator.next();
+            if (dish.getCalories() > 300) {
+                highCaloricDishes.add(dish.getName());
+            }
+        }
+
+        List<String> highCaloricDishesStream = menu.stream()
+                .filter(dish -> dish.getCalories() > 300)
+                .map(Dish::getName)
+                .collect(toList());
     }
 }
 
