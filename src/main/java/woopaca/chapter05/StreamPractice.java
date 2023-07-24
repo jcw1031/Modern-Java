@@ -4,6 +4,7 @@ import woopaca.Dish;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -125,5 +126,25 @@ public class StreamPractice {
         for (int[] newNumber : newNumbers) {
             System.out.print(Arrays.toString(newNumber) + ", ");
         }
+    }
+
+    public void matchExample() {
+        if (menu.stream().anyMatch(Dish::isVegetarian)) {
+            System.out.println("The menu is (somewhat) vegetarian friendly!");
+        }
+
+        if (menu.stream().allMatch(dish -> dish.getCalories() < 1000)) {
+            System.out.println("The menu is healthy food!");
+        }
+
+        if (menu.stream().noneMatch(dish -> dish.getCalories() >= 1000)) {
+            System.out.println("The menu is healthy food!");
+        }
+    }
+
+    public void findExample() {
+        Optional<Dish> dish = menu.stream()
+                .filter(Dish::isVegetarian)
+                .findAny();
     }
 }
