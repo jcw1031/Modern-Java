@@ -4,6 +4,7 @@ class StreamPracticeTest {
 
     public static void main(String[] args) {
         final StreamPractice streamPractice = new StreamPractice();
-        streamPractice.skipOperation();
+        streamPractice.mapping();
+        streamPractice.mappingTest();
     }
 }
