@@ -10,6 +10,6 @@ class IntStreamExampleTest {
 
     @Test
     void test() {
-        intStreamExample.intStream();
+        intStreamExample.pythagoras();
     }
 }
