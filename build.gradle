@@ -11,6 +11,9 @@ repositories {
 
 dependencies {
     implementation 'org.slf4j:slf4j-api:1.7.25'
+    implementation 'org.openjdk.jmh:jmh-core:1.21'
+    implementation 'org.openjdk.jmh:jmh-generator-annprocess:1.21'
+
     testImplementation 'org.slf4j:slf4j-api:1.7.25'
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
@@ -18,4 +21,34 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'org.openjdk.jmh.Main'
+    }
+}
+
+configurations {
+    shade
+}
+
+dependencies {
+    shade 'org.ow2.asm:asm:6.2.1'
+}
+
+tasks.register('createShadedJar', Jar) {
+    archiveClassifier.set('shaded')
+    manifest {
+        attributes 'Main-Class': 'org.openjdk.jmh.Main'
+    }
+}
+
+createShadedJar {
+    from sourceSets.main.output
+    from configurations.shade.collect { it.isDirectory() ? it : zipTree(it) }
+}
+
+tasks.named('build') {
+    dependsOn 'createShadedJar'
 }
